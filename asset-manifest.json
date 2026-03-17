@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/bhavi15.github.io/static/css/main.a00a99ba.css",
-    "main.js": "/bhavi15.github.io/static/js/main.e1a4ed48.js",
-    "index.html": "/bhavi15.github.io/index.html"
+    "main.css": "/static/css/main.a00a99ba.css",
+    "main.js": "/static/js/main.e1a4ed48.js",
+    "index.html": "/index.html"
   },
   "entrypoints": [
     "static/css/main.a00a99ba.css",
