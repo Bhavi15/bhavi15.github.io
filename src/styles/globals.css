@@ -1,0 +1,189 @@
+/* ══════════════════════════════════════════════════════
+   NEURAL LATTICE — DESIGN SYSTEM
+   AI/ML Engineer Portfolio
+══════════════════════════════════════════════════════ */
+
+:root {
+  /* Core palette */
+  --void:        #040508;
+  --void-2:      #080C12;
+  --void-3:      #0D1520;
+  --electric:    #00D4FF;
+  --synapse:     #00FF88;
+  --tensor:      #FF3366;
+  --plasma:      #7B2FFF;
+  --amber:       #FFB800;
+  --white:       #F0F4FF;
+  --muted:       rgba(240, 244, 255, 0.45);
+  --faint:       rgba(240, 244, 255, 0.18);
+
+  /* Glass */
+  --glass:       rgba(0, 212, 255, 0.04);
+  --glass-b:     rgba(0, 212, 255, 0.10);
+  --glass-str:   rgba(0, 212, 255, 0.16);
+
+  /* Typography */
+  --ff-mono:     'JetBrains Mono', 'Fira Code', monospace;
+  --ff-display:  'Syne', sans-serif;
+  --ff-body:     'Space Grotesk', sans-serif;
+
+  /* Glow helpers */
+  --glow-e:  0 0 20px rgba(0, 212, 255, 0.5), 0 0 60px rgba(0, 212, 255, 0.15);
+  --glow-s:  0 0 20px rgba(0, 255, 136, 0.5), 0 0 60px rgba(0, 255, 136, 0.15);
+  --glow-t:  0 0 20px rgba(255, 51, 102, 0.5), 0 0 60px rgba(255, 51, 102, 0.15);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--ff-body);
+  background: var(--void);
+  color: var(--white);
+  overflow: hidden;
+  cursor: none;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Keyframes ── */
+@keyframes fadeIn     { from { opacity: 0 }               to { opacity: 1 } }
+@keyframes fadeOut    { from { opacity: 1 }               to { opacity: 0 } }
+@keyframes slideUp    { from { opacity: 0; transform: translateY(20px) } to { opacity: 1; transform: translateY(0) } }
+@keyframes slideLeft  { from { opacity: 0; transform: translateX(20px) } to { opacity: 1; transform: translateX(0) } }
+@keyframes pulse      { 0%,100% { opacity: 1 }            50% { opacity: 0.35 } }
+@keyframes breathe    { 0%,100% { transform: scale(1) }   50% { transform: scale(1.04) } }
+@keyframes spin       { from { transform: rotate(0deg) }  to   { transform: rotate(360deg) } }
+@keyframes spinR      { from { transform: rotate(360deg) } to  { transform: rotate(0deg) } }
+@keyframes float      { 0%,100% { transform: translateY(0) }  50% { transform: translateY(-6px) } }
+@keyframes scanline   { from { transform: translateY(-100%) } to { transform: translateY(100vh) } }
+@keyframes glitch1 {
+  0%,86%,100% { clip-path: none; transform: none }
+  87% { clip-path: inset(8% 0 72% 0);  transform: translate(-3px, 1px) }
+  89% { clip-path: inset(54% 0 22% 0); transform: translate(3px, -1px) }
+  91% { clip-path: inset(30% 0 48% 0); transform: translate(-2px, 2px) }
+}
+@keyframes typewriter {
+  from { width: 0 }
+  to   { width: 100% }
+}
+@keyframes blink {
+  0%, 50% { border-color: var(--electric) }
+  51%,100% { border-color: transparent }
+}
+@keyframes dataFlow {
+  0%   { stroke-dashoffset: 1000; opacity: 0 }
+  10%  { opacity: 1 }
+  90%  { opacity: 1 }
+  100% { stroke-dashoffset: 0;    opacity: 0 }
+}
+@keyframes nodeFlash {
+  0%,100% { box-shadow: 0 0 8px var(--electric) }
+  50%     { box-shadow: 0 0 30px var(--electric), 0 0 60px rgba(0,212,255,0.3) }
+}
+@keyframes matrixRain {
+  0%   { transform: translateY(-100%); opacity: 0 }
+  5%   { opacity: 1 }
+  95%  { opacity: 0.6 }
+  100% { transform: translateY(100vh); opacity: 0 }
+}
+@keyframes progressFill {
+  from { width: 0 }
+  to   { width: var(--target-w) }
+}
+@keyframes orbitPath {
+  from { transform: rotate(0deg) translateX(var(--r)) rotate(0deg) }
+  to   { transform: rotate(360deg) translateX(var(--r)) rotate(-360deg) }
+}
+@keyframes shimmerX {
+  from { transform: translateX(-100%) }
+  to   { transform: translateX(200%) }
+}
+@keyframes wipeIn {
+  0%   { clip-path: inset(0 100% 0 0) }
+  100% { clip-path: inset(0 0% 0 0) }
+}
+@keyframes tensorFlow {
+  0%   { opacity: 0; transform: scaleX(0); transform-origin: left }
+  20%  { opacity: 1; transform: scaleX(1) }
+  80%  { opacity: 1 }
+  100% { opacity: 0 }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px }
+::-webkit-scrollbar-track { background: transparent }
+::-webkit-scrollbar-thumb { background: rgba(0,212,255,0.3); border-radius: 2px }
+
+/* ── LoadScreen cinematic keyframes ── */
+@keyframes drawLine {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+@keyframes revealUp {
+  from { clip-path: inset(100% 0 0 0); opacity: 0; }
+  to   { clip-path: inset(0% 0 0 0);   opacity: 1; }
+}
+@keyframes glitchSlice {
+  0%,90%,100% { clip-path: none; transform: none; opacity: 1; }
+  91% { clip-path: inset(10% 0 80% 0); transform: translate(-4px, 0); opacity: 0.9; }
+  93% { clip-path: inset(60% 0 10% 0); transform: translate(4px, 0);  opacity: 0.9; }
+  95% { clip-path: none; transform: translate(-2px, 0); }
+  97% { clip-path: none; transform: none; }
+}
+@keyframes scanDown {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  5%   { opacity: 0.6; }
+  95%  { opacity: 0.6; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+@keyframes gridPulse {
+  0%,100% { opacity: 0.4; }
+  50%     { opacity: 1; }
+}
+@keyframes cornerExpand {
+  from { width: 0; height: 0; opacity: 0; }
+  to   { width: 18px; height: 18px; opacity: 1; }
+}
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes hexRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes hexRotateR {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+@keyframes ripple {
+  0%   { transform: translate(-50%,-50%) scale(0.5); opacity: 0.8; }
+  100% { transform: translate(-50%,-50%) scale(3);   opacity: 0; }
+}
+@keyframes flicker {
+  0%,19%,21%,23%,25%,54%,56%,100% { opacity: 1; }
+  20%,22%,24%,55% { opacity: 0.4; }
+}
+
+/* ── Chat Portfolio additions ── */
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: .4; }
+  30%            { transform: translateY(-6px); opacity: 1; }
+}
+
+/* allow text selection in chat */
+.chat-selectable { user-select: text; cursor: auto; }
+
+/* custom scrollbar */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(99,179,237,.18); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(99,179,237,.35); }
+
+/* re-allow cursor in chat */
+input, button, a { cursor: auto; }
+body { cursor: auto; overflow: auto; }
