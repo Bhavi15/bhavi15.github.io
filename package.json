@@ -2,7 +2,7 @@
   "name": "ai-engineer-portfolio",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://bhavi15.github.io",
+  "homepage": ".",
   "dependencies": {
     "@react-three/drei": "^9.92.0",
     "@react-three/fiber": "^8.15.0",
